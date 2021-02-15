@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Day#1 HTML Sanbercode</title>
+</head>
+<body>
+    <h1>Buat Account Baru!</h1>
+    <h2>Sign Up Form</h2>
+    <form action="welcome.html" method="GET">
+        <label for="first_name">First Name: </label> <br>
+        <input type="text" name="first_name" id="first_name"> <br>
+        <br>
+        <label for="last_name">Last Name: </label> <br>
+        <input type="text" name="last_name" id="last_name"> <br>
+        <br>
+        <label>Gender:</label> <br>
+        <input type="radio" name="gender_male" id="gender_male">
+        <label for="gender_male">Male</label><br>
+        <input type="radio" name="gender_female" id="gender_female">
+        <label for="gender_female">Female</label> <br>
+        <input type="radio" name="gender_other" id="gender_other">
+        <label for="gender_other">Other</label> <br>
+        <br>
+        <label for="nationality">Nationality:</label> <br>
+        <select name="nationality" id="nationality">
+            <option value="indonesian">Indonesian</option>
+            <option value="singaporean">Singaporean</option>
+            <option value="malaysian">Malaysian</option>
+            <option value="australian">Australian</option>
+        </select>
+        <br>
+        <br>
+        <label>Language Spoken: </label> <br>
+        <input type="checkbox" name="lang_indonesian" id="lang_indonesian">
+        <label for="lang_indonesian">Bahasa Indonesia</label> <br>
+        <input type="checkbox" name="lang_english" id="lang_english">
+        <label for="lang_english">English</label> <br>
+        <input type="checkbox" name="lang_other" id="lang_other">
+        <label for="lang_other">Other</label> <br>
+        <br>
+
+        <label for="bio">Bio: </label> <br>
+        <textarea name="bio" id="bio" cols="30" rows="10"></textarea> <br>
+
+        <button>Submit</button>
+
+    </form>
+</body>
+</html>
