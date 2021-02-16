@@ -48,7 +48,7 @@ body {
   background-image: url(../img/pattern.jpg);
 }
 
-#main {
+section {
   padding: 10px 0;
   background-color: white;
   margin: 10 20vw;
