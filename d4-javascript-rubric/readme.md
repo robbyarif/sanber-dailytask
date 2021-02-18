@@ -3,7 +3,7 @@
 ## Objectives
 
 ### String Manipulation 
-Solve problems mentioned in the comments section.
+Create `string.html` with html script below. Solve problems mentioned in the comments section.
 
 ```
 <!DOCTYPE html>
