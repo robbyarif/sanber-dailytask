@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Latihan DOM</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand">Mini Ecommerce</a>
+            <form class="form-inline" id="formItem">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search"  id="keyword" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchItem">Search</button>
+            </form>
+            <button class="btn btn-primary" id="cart"><i class="fas fa-shopping-cart"></i>(0)</button>
+        </nav>
+        <div class="row">
+            <div class="col-md-12 mt-2 card-deck"  id="listBarang" >
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        var items = [
+            ['001', 'Keyboard Logitek', 60000, 'Keyboard yang mantap untuk kantoran', 'logitek.jpg'], 
+            ['002', 'Keyboard MSI', 300000, 'Keyboard gaming MSI mekanik', 'msi.jpg'],
+            ['003', 'Mouse Genius', 50000, 'Mouse Genius biar lebih pinter', 'genius.jpeg'],
+            ['004', 'Mouse Jerry', 30000, 'Mouse yang disukai kucing', 'jerry.jpg']
+        ]
+
+        var cart = [];
+
+        function card_template (id, nama, harga, desc, img, alt) {
+            return `
+            <div class="card" style="width: 18rem; max-width: 300px;">
+                <img src="${img}" class="card-img-top" alt="${alt}" style="width:auto; height:200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title" id="itemName">${nama}</h5>
+                    <p class="card-text" id="itemDesc">${desc}</p>
+                    <p class="card-text">Rp${harga}</p>
+                    <a href="#" class="btn btn-primary" id="addCart" onclick="add_to_cart('${id}')">Tambahkan ke keranjang</a>
+                </div>
+            </div>`
+        } 
+
+        function add_to_cart(id) {
+            var item_found = items.find(item =>  item[0] == id)
+
+            cart.push(item_found);
+            generate_cart();
+        }
+
+        function generate_cards (items) {
+            var i;
+            var output_html = "";
+            for(i=0; i<items.length; i++) {
+                var item = items[i];
+                var id = item[0];
+                var nama = item[1];
+                var harga = item[2];
+                var desc = item[3];
+                var img = "public/assets/images/" + item[4];
+                var alt = nama;
+                output_html += card_template(id, nama, harga, desc, img, alt);
+            }
+
+            document.getElementById("listBarang").innerHTML = output_html;
+        }
+
+        function generate_cart() {
+            var total = cart.length;
+            document.getElementById("cart").innerHTML = `<i class="fas fa-shopping-cart"></i>(${total})`;
+        }
+
+        generate_cards(items);
+        // generate_cart();
+
+        function filter(items, keyword){
+            var i; 
+            var filtered_items = [];
+
+            for(i=0; i<items.length; i++) {
+                var item = items[i];
+                var nama = item[1];
+                var desc = item[3];
+
+                var isMatch = nama.toLowerCase().includes(keyword.toLowerCase()) 
+                              || desc.toLowerCase().includes(keyword.toLowerCase());
+
+                if (isMatch) {
+                    filtered_items.push(item);
+                }
+            }
+            return filtered_items;
+        }
+
+        var formSearch = document.getElementById("formItem");
+        formSearch.addEventListener("submit", function (event){
+            event.preventDefault();
+            var keyword = document.getElementById("keyword").value;
+
+            generate_cards(filter(items, keyword));
+        });
+
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+</body>
+</html>
