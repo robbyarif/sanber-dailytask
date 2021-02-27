@@ -1,0 +1,73 @@
+Sanber Week 2 Day 5 SQL Task
+
+1.buat Database
+
+create database myshop;
+
+2.
+
+CREATE TABLE users (
+    id int(8) auto_increment,
+    name varchar(255),
+    email varchar(255),
+    password varchar(255),
+    primary key(id)
+);
+
+CREATE TABLE categories (
+    id	int(8) auto_increment,
+    name	varchar(255),
+    primary key(id)
+);
+
+CREATE TABLE items (
+    id int(8) auto_increment,
+    name varchar(255),
+    description	varchar(255),
+    price	int(8),
+    stock	int(8),
+    category_id	int(8),
+    primary key(id),
+    foreign key(category_id) references categories(id)
+);
+
+
+3.
+
+INSERT INTO users (name, email, password)
+VALUES ('John Doe', 'john@doe.com', 'john123'),
+       ('Jane Doe',	'jane@doe.com',	'jenita123');
+
+INSERT INTO categories (name)
+VALUES ('gadget'),
+       ('cloth'),
+       ('men'),
+       ('women'),
+       ('branded');
+
+INSERT INTO items (name, description, price, stock, category_id)
+VALUES ('Sumsang b50',	'hape keren dari merek sumsang',	4000000,	100,	1),
+    ('Uniklooh',	'baju keren dari brand ternama',	500000,	50,	2),
+    ('IMHO Watch',	'jam tangan anak yang jujur banget',	2000000,	10,	1);
+
+.....
+
+4.
+
+a. SELECT name, email FROM users;
+b. 
+SELECT * FROM  items WHERE price > 1000000;
+SELECT * FROM  items WHERE name LIKE '%Uniklo%';
+c. 
+select i.name,	i.description, i.price,	i.stock, i.category_id,	c.name as kategori from items i inner join categories c on i.category_id = c.id;  
+
+.....
+
+5.
+
+UPDATE items
+SET price = 2500000
+WHERE name = 'Sumsang b50';
+
+
+.....
