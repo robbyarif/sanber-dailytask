@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\FormController;
+
+Route::get('/', 'HomeController@get')->name('index');
+
+Route::get('/register', 'AuthController@get_register');
+Route::post('/register', 'AuthController@post_register');
+
+Route::get('/welcome', 'AuthController@get_welcome')->name('welcome');
