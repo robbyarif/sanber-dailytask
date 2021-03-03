@@ -11,8 +11,6 @@
 |
 */
 
-use App\Http\Controllers\FormController;
-
 Route::get('/', 'HomeController@get')->name('index');
 
 Route::get('/register', 'AuthController@get_register');
